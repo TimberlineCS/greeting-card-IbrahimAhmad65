@@ -1,12 +1,15 @@
-//Your name
-//Period
-//Date
+// Ibrahim Ahmad
+// 1
+//Dat 12/13/2023
 
 /*Provide a description about what this program does here*/
 
 /*Write code to create and manipulate the elements on the index.html page.  
 The elements must come to gether to resemble an image.  Your Greeting Card
 must also include text, an image, and music. */
+
+var santaPos = 0;
+var rightSanta = true;
 function createTriangle(border) {
   var triangle = document.createElement("div");
   triangle.style.border = border;
@@ -17,6 +20,35 @@ function createTriangle(border) {
   triangle.style.borderTopColor = "transparent";
   triangle.style.position = "relative";
   return triangle;
+}
+
+function createCircle() {
+  var circle = document.createElement("div");
+  circle.style.borderRadius = "100%";
+  circle.style.backgroundColor = "#FAF9F6";
+  circle.style.borderColor = "#FAF9F6";
+  circle.style.position = "relative";
+  circle.style.width = "10px";
+  circle.style.height = "10px";
+
+  return circle;
+}
+function createOrnament(x, y, color, parent) {
+  var ornament1 = createCircle();
+  ornament1.style.left = x + "px";
+  ornament1.style.top = y + "px";
+  ornament1.style.backgroundColor = color;
+  parent.append(ornament1);
+}
+function createSanta() {
+  var santa = document.createElement("img");
+  santa.src = "Images/santa.webp";
+  santa.style.position = "fixed";
+
+  santa.id = "santa";
+  santa.style.width = "100px";
+  santa.style.top = Math.random() * 200 + "px";
+  return santa;
 }
 
 function createTree() {
@@ -30,21 +62,47 @@ function createTree() {
   tree.append(tri1);
   tree.append(tri2);
   tree.append(tri3);
+  var ornaments = ["red", "red", "blue", "blue", "darkgeen", "darkgreen"];
+  ornaments.forEach((element) => {
+    createOrnament(
+      80 + Math.random() * 40,
+      -200 - Math.random() * 130,
+      element,
+      tree
+    );
+  });
+  // createOrnament(
+  //   90 + Math.random() * 15,
+  //   -200 - Math.random() * 150,
+  //   "red",
+  //   tree
+  // );
+  // createOrnament(
+  //   90 + Math.random() * 15,
+  //   -200 - Math.random() * 150,
+  //   "blue",
+  //   tree
+  // );
+  // createOrnament(
+  //   90 + Math.random() * 15,
+  //   -200 - Math.random() * 150,
+  //   "pink",
+  //   tree
+  // );
 
   return tree;
 }
-
-function snow(num) {
+function createSnow(num) {
   for (i = 0; i < num; i++) {
     var snowParticle = document.createElement("div");
     snowParticle.style.borderRadius = "100%";
     snowParticle.style.backgroundColor = "#FAF9F6";
     snowParticle.style.borderColor = "#FAF9F6";
     snowParticle.style.position = "fixed";
-    var randPosX = Math.random() * 600;
-    var randPosY = Math.random() * 600;
-    snowParticle.style.top = randPosX + "px";
-    snowParticle.style.left = randPosY + "px";
+    var randPosX = Math.random() * 1270;
+    var randPosY = Math.random() * 650;
+    snowParticle.style.top = randPosY + "px";
+    snowParticle.style.left = randPosX + "px";
     //   console.log(randPosX);
     snowParticle.style.width = "10px";
     snowParticle.style.height = "10px";
@@ -52,8 +110,20 @@ function snow(num) {
     document.body.append(snowParticle);
   }
 }
-function snow() {
-  snow(10);
+
+function iterateSanta() {
+  var santa = document.getElementById("santa");
+  santaPos += 3;
+
+  if (santaPos > 1300) {
+    santaPos = -200;
+    santa.style.top = Math.random() * 200 + "px";
+  }
+  santa.style.left = santaPos + "px";
+}
+
+function snowEnd() {
+  createSnow(10);
 }
 
 function createButton(onClick) {
@@ -77,7 +147,21 @@ tree2.style.position = "fixed";
 tree2.style.left = "1000px";
 tree2.style.top = "200px";
 
-var button = createButton("snow(10)");
+var button = createButton(() => snowEnd());
 button.innerHTML = "Press Me for a Snowy Suprise";
 document.body.append(button);
-snow(10);
+
+var santa = createSanta();
+document.body.append(santa);
+
+setInterval(() => iterateSanta(), 30);
+var sun = createCircle();
+sun.position = "fixed";
+sun.style.top = "-100px";
+sun.style.left = "1200px";
+sun.style.width = "200px";
+sun.style.height = "200px";
+
+sun.style.backgroundColor = "yellow";
+sun.style.borderColor = "yellow";
+document.body.append(sun);
