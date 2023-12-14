@@ -176,3 +176,4 @@ document.body.style.height = "550px";
 document.body.style.width = "1200px";
 document.body.style.border = "thick dotted white";
 document.body.style.borderWidth = "40px";
+document.body.style.overflow = "hidden";
