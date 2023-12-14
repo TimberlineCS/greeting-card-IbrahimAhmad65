@@ -9,7 +9,8 @@ The elements must come to gether to resemble an image.  Your Greeting Card
 must also include text, an image, and music. */
 
 var santaPos = 0;
-var rightSanta = true;
+var welcomePos = 300;
+var welcomeRight = true;
 function createTriangle(border) {
   var triangle = document.createElement("div");
   triangle.style.border = border;
@@ -56,7 +57,6 @@ function createTree() {
   var tri1 = createTriangle("green solid 100px");
   var tri2 = createTriangle("green solid 100px");
   var tri3 = createTriangle("green solid 100px");
-  var tri4 = createTriangle("green solid 100px");
   tri1.style.top = "150px";
   tri3.style.top = "-150px";
   tree.append(tri1);
@@ -71,25 +71,6 @@ function createTree() {
       tree
     );
   });
-  // createOrnament(
-  //   90 + Math.random() * 15,
-  //   -200 - Math.random() * 150,
-  //   "red",
-  //   tree
-  // );
-  // createOrnament(
-  //   90 + Math.random() * 15,
-  //   -200 - Math.random() * 150,
-  //   "blue",
-  //   tree
-  // );
-  // createOrnament(
-  //   90 + Math.random() * 15,
-  //   -200 - Math.random() * 150,
-  //   "pink",
-  //   tree
-  // );
-
   return tree;
 }
 function createSnow(num) {
@@ -122,6 +103,21 @@ function iterateSanta() {
   santa.style.left = santaPos + "px";
 }
 
+function iterateWelcome() {
+  var welcome = document.getElementById("welcome");
+  if (welcomeRight) {
+    welcomePos += 1;
+  } else {
+    welcomePos -= 1;
+  }
+  if (welcomePos > 400) {
+    welcomeRight = false;
+  } else if (welcomePos < 200) {
+    welcomeRight = true;
+  }
+  welcome.style.left = welcomePos + "px";
+}
+
 function snowEnd() {
   createSnow(10);
 }
@@ -139,13 +135,13 @@ var tree = createTree();
 document.body.append(tree);
 tree.style.position = "fixed";
 tree.style.left = "100px";
-tree.style.top = "200px";
+tree.style.top = "100px";
 
 var tree2 = createTree();
 document.body.append(tree2);
 tree2.style.position = "fixed";
 tree2.style.left = "1000px";
-tree2.style.top = "200px";
+tree2.style.top = "100px";
 
 var button = createButton(() => snowEnd());
 button.innerHTML = "Press Me for a Snowy Suprise";
@@ -157,11 +153,26 @@ document.body.append(santa);
 setInterval(() => iterateSanta(), 30);
 var sun = createCircle();
 sun.position = "fixed";
-sun.style.top = "-100px";
-sun.style.left = "1200px";
+sun.style.top = "-200px";
+sun.style.left = "1150px";
 sun.style.width = "200px";
 sun.style.height = "200px";
 
 sun.style.backgroundColor = "yellow";
 sun.style.borderColor = "yellow";
 document.body.append(sun);
+
+var welcome = document.createElement("div");
+welcome.innerHTML = "Happy Holidays!";
+welcome.style.color = "gold";
+welcome.id = "welcome";
+welcome.style.position = "fixed";
+welcome.style.fontFamily = "cursive";
+welcome.style.fontSize = "120px";
+welcome.style.left = "300px";
+document.body.append(welcome);
+setInterval(() => iterateWelcome(), 100);
+document.body.style.height = "550px";
+document.body.style.width = "1200px";
+document.body.style.border = "thick dotted white";
+document.body.style.borderWidth = "40px";
