@@ -105,6 +105,8 @@ function iterateSanta() {
 
 function iterateWelcome() {
   var welcome = document.getElementById("welcome");
+  var button = document.getElementById("button");
+
   if (welcomeRight) {
     welcomePos += 1;
   } else {
@@ -116,6 +118,7 @@ function iterateWelcome() {
     welcomeRight = true;
   }
   welcome.style.left = welcomePos + "px";
+  button.style.left = welcomePos + 100 + "px";
 }
 
 function snowEnd() {
@@ -130,6 +133,9 @@ function createButton(onClick) {
 document.body.style.backgroundColor = "#87CEEB";
 var au = new Audio("Music/AllIWantForChristmas.mp3");
 au.controls = true;
+au.style.position = "fixed";
+au.style.top = "550px";
+au.style.left = "480px";
 document.body.appendChild(au);
 var tree = createTree();
 document.body.append(tree);
@@ -145,6 +151,9 @@ tree2.style.top = "100px";
 
 var button = createButton(() => snowEnd());
 button.innerHTML = "Press Me for a Snowy Suprise";
+button.id = "button";
+button.style.position = "fixed";
+button.style.top = "400px";
 document.body.append(button);
 
 var santa = createSanta();
