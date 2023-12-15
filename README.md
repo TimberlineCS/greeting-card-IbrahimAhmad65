@@ -1,34 +1,30 @@
-# Greeting Card
+# Project X: Project Name
 
-## Project Overview
-In this project you will apply JavaScript to the DOM to create a greeting card on an HTML page.  
+- Author: Ibrahim Ahmad
+- Class: APCSP
+- Semester: Fall 2023
 
-## Objectives
+## Overview
 
-- [ ] Create HTML elements
-- [ ] Use JavaScript to manipulate HTML elements
-- [ ] Use variables to manage data
+This creates a webpage that shows an interactive greeting card.
 
-## Specifications
+## Compiling and Using
 
-Create a Greeting Card on an HTML page.  Your Greeting Card should include at least 10 different HTML elements.  You must use JavaScript (only) to create and manipulate your elements in such a way that they come together to clearly resemble a picture.   Your Greeting Card should include a variety of colors (at least 5), text, an image, and music. 
+Clone the repository
+Load the index.html file into Firefox.
 
-## Your Tasks
+## Discussion
 
-- [ ] Locate the index.html page.  Here you will create the basic elements for your page.  You must include at least 10 different elements. 
-- [ ] Locate the App.js file.  Write code to manipulate the elements on your index.html page
-- [ ] Include music with your GreetingCard.  Below is an example of how to do this, 
+My Primary problems occured with the `Press Me for a Snowy Suprise` button. First, I struggled to bind a function to the button, then I struggled with properly creating the snowflakes randomly. Once that was completed my primary issues occurred when I tried to load the `App.js` as a module, as this violated a CORS Policy, so I had to either host the website as a local server, or to load the `App.js` as a single file, which I chose to do.
 
-```
-var au = new Audio("Music/AllIWantForChristmas.mp3");
-au.controls = true;
-document.body.appendChild(au);
-```
+## Testing
 
-- [ ] Document your code thoroughly as you go with comments
-- [ ] Complete the required README using specified guidelines
+I have verfied that the santa picture moves at the correct rate, the Happy Holidays sign also moves properly. I also refreshed the webpage many times to ensure correct ornament placement when random and correct snowflake placement.
 
-## Grade your project before you submit
+## Extra Credit
 
-- [ ] Before you submit your project, grade your project against the criteria below. 
-	[Rubric.md](Rubric.md)
+There was no extra credit
+
+## Sources used
+
+I used w3schools.com and stack overflow considerably. Aside from those, I used information from Notes Set 20-22

@@ -164,7 +164,7 @@ function createAndBindSun() {
   sun.style.backgroundColor = "yellow";
   sun.style.borderColor = "yellow";
 }
-function createAndBindWelcome() {
+function createAndBindWelcomeMessage() {
   var welcome = document.createElement("div");
   welcome.innerHTML = "Happy Holidays!";
   welcome.style.color = "gold";
@@ -206,5 +206,5 @@ createAndBindSnowButton();
 createAndBindSanta();
 
 createAndBindSun();
-createAndBindWelcome();
+createAndBindWelcomeMessage();
 styleDocumentBody();
