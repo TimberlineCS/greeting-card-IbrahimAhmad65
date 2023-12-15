@@ -164,6 +164,7 @@ function createAndBindSun() {
   sun.style.backgroundColor = "yellow";
   sun.style.borderColor = "yellow";
 }
+
 function createAndBindWelcomeMessage() {
   var welcome = document.createElement("div");
   welcome.innerHTML = "Happy Holidays!";
