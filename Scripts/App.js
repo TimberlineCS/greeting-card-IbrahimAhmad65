@@ -11,6 +11,16 @@ must also include text, an image, and music. */
 var santaPos = 0;
 var welcomePos = 300;
 var welcomeRight = true;
+
+function createAndBindAudio() {
+  var au = new Audio("Music/AllIWantForChristmas.mp3");
+  au.controls = true;
+  au.style.position = "fixed";
+  au.style.top = "550px";
+  au.style.left = "480px";
+  document.body.appendChild(au);
+}
+
 function createTriangle(border) {
   var triangle = document.createElement("div");
   triangle.style.border = border;
@@ -40,16 +50,6 @@ function createOrnament(x, y, color, parent) {
   ornament1.style.top = y + "px";
   ornament1.style.backgroundColor = color;
   parent.append(ornament1);
-}
-function createSanta() {
-  var santa = document.createElement("img");
-  santa.src = "Images/santa.webp";
-  santa.style.position = "fixed";
-
-  santa.id = "santa";
-  santa.style.width = "100px";
-  santa.style.top = Math.random() * 200 + "px";
-  return santa;
 }
 
 function createTree() {
@@ -130,13 +130,65 @@ function createButton(onClick) {
   button.onclick = onClick;
   return button;
 }
-document.body.style.backgroundColor = "#87CEEB";
-var au = new Audio("Music/AllIWantForChristmas.mp3");
-au.controls = true;
-au.style.position = "fixed";
-au.style.top = "550px";
-au.style.left = "480px";
-document.body.appendChild(au);
+
+function createAndBindSnowButton() {
+  var button = createButton(() => snowEnd());
+  button.innerHTML = "Press Me for a Snowy Suprise";
+  button.id = "button";
+  button.style.position = "fixed";
+  button.style.top = "400px";
+  document.body.append(button);
+}
+
+function createAndBindSanta() {
+  var santa = document.createElement("img");
+  santa.src = "Images/santa.webp";
+  santa.style.position = "fixed";
+
+  santa.id = "santa";
+  santa.style.width = "100px";
+  santa.style.top = Math.random() * 200 + "px";
+  document.body.append(santa);
+
+  setInterval(() => iterateSanta(), 30);
+}
+
+function createAndBindSun() {
+  var sun = createCircle();
+  sun.position = "fixed";
+  sun.style.top = "-200px";
+  sun.style.left = "1150px";
+  sun.style.width = "200px";
+  sun.style.height = "200px";
+
+  sun.style.backgroundColor = "yellow";
+  sun.style.borderColor = "yellow";
+}
+function createAndBindWelcome() {
+  var welcome = document.createElement("div");
+  welcome.innerHTML = "Happy Holidays!";
+  welcome.style.color = "gold";
+  welcome.id = "welcome";
+  welcome.style.position = "fixed";
+  welcome.style.fontFamily = "cursive";
+  welcome.style.fontSize = "120px";
+  welcome.style.left = "300px";
+  welcome.style.top = "150px";
+
+  document.body.append(welcome);
+  setInterval(() => iterateWelcome(), 100);
+}
+
+function styleDocumentBody() {
+  document.body.style.backgroundColor = "#87CEEB";
+  document.body.style.height = "550px";
+  document.body.style.width = "1200px";
+  document.body.style.border = "thick dotted white";
+  document.body.style.borderWidth = "40px";
+  document.body.style.overflow = "hidden";
+}
+
+createAndBindAudio();
 var tree = createTree();
 document.body.append(tree);
 tree.style.position = "fixed";
@@ -149,40 +201,10 @@ tree2.style.position = "fixed";
 tree2.style.left = "1000px";
 tree2.style.top = "100px";
 
-var button = createButton(() => snowEnd());
-button.innerHTML = "Press Me for a Snowy Suprise";
-button.id = "button";
-button.style.position = "fixed";
-button.style.top = "400px";
-document.body.append(button);
+createAndBindSnowButton();
 
-var santa = createSanta();
-document.body.append(santa);
+createAndBindSanta();
 
-setInterval(() => iterateSanta(), 30);
-var sun = createCircle();
-sun.position = "fixed";
-sun.style.top = "-200px";
-sun.style.left = "1150px";
-sun.style.width = "200px";
-sun.style.height = "200px";
-
-sun.style.backgroundColor = "yellow";
-sun.style.borderColor = "yellow";
-document.body.append(sun);
-
-var welcome = document.createElement("div");
-welcome.innerHTML = "Happy Holidays!";
-welcome.style.color = "gold";
-welcome.id = "welcome";
-welcome.style.position = "fixed";
-welcome.style.fontFamily = "cursive";
-welcome.style.fontSize = "120px";
-welcome.style.left = "300px";
-document.body.append(welcome);
-setInterval(() => iterateWelcome(), 100);
-document.body.style.height = "550px";
-document.body.style.width = "1200px";
-document.body.style.border = "thick dotted white";
-document.body.style.borderWidth = "40px";
-document.body.style.overflow = "hidden";
+createAndBindSun();
+createAndBindWelcome();
+styleDocumentBody();
