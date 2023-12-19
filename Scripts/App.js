@@ -11,7 +11,9 @@ must also include text, an image, and music. */
 var santaPos = 0;
 var welcomePos = 300;
 var welcomeRight = true;
-
+/**
+ * Creates an audio slider and binds it to the DOM at the correct position
+ */
 function createAndBindAudio() {
   var au = new Audio("Music/AllIWantForChristmas.mp3");
   au.controls = true;
@@ -20,7 +22,9 @@ function createAndBindAudio() {
   au.style.left = "480px";
   document.body.appendChild(au);
 }
-
+/**
+ * Triangle Factory
+ */
 function createTriangle(border) {
   var triangle = document.createElement("div");
   triangle.style.border = border;
@@ -32,7 +36,9 @@ function createTriangle(border) {
   triangle.style.position = "relative";
   return triangle;
 }
-
+/**
+ * Circle Factory
+ */
 function createCircle() {
   var circle = document.createElement("div");
   circle.style.borderRadius = "100%";
@@ -44,6 +50,12 @@ function createCircle() {
 
   return circle;
 }
+/**
+ * @param {String} color Color of the ornament
+ * @param {integer} x x position of the ornament
+ * @param {integer} y y position of the ornament
+ * @param  parent The DOM parent of the element
+ */
 function createOrnament(x, y, color, parent) {
   var ornament1 = createCircle();
   ornament1.style.left = x + "px";
@@ -51,7 +63,9 @@ function createOrnament(x, y, color, parent) {
   ornament1.style.backgroundColor = color;
   parent.append(ornament1);
 }
-
+/**
+ * Factory for trees
+ */
 function createTree() {
   var tree = document.createElement("div");
   var tri1 = createTriangle("green solid 100px");
@@ -73,6 +87,11 @@ function createTree() {
   });
   return tree;
 }
+
+/**
+ * @param {integer} num The number of snow particles to generate
+ * generates num snow particles at random positions and binds them to the dom
+ */
 function createSnow(num) {
   for (i = 0; i < num; i++) {
     var snowParticle = document.createElement("div");
@@ -91,7 +110,9 @@ function createSnow(num) {
     document.body.append(snowParticle);
   }
 }
-
+/**
+ * Moves santa 3px to the right and resets his position if he hits the end.
+ */
 function iterateSanta() {
   var santa = document.getElementById("santa");
   santaPos += 3;
@@ -102,7 +123,9 @@ function iterateSanta() {
   }
   santa.style.left = santaPos + "px";
 }
-
+/**
+ * Single iteration of Welcome element greeting animation. Also animates the snow button to be in sync.
+ */
 function iterateWelcome() {
   var welcome = document.getElementById("welcome");
   var button = document.getElementById("button");
@@ -120,17 +143,23 @@ function iterateWelcome() {
   welcome.style.left = welcomePos + "px";
   button.style.left = welcomePos + 100 + "px";
 }
-
+/**
+ * creates 10 random snow particles and binds them to the DOM.
+ */
 function snowEnd() {
   createSnow(10);
 }
-
+/**
+ * General button factory
+ */
 function createButton(onClick) {
   var button = document.createElement("button");
   button.onclick = onClick;
   return button;
 }
-
+/**
+ * creates a button for snow generation, binds it, and adds it to the DOM.
+ */
 function createAndBindSnowButton() {
   var button = createButton(() => snowEnd());
   button.innerHTML = "Press Me for a Snowy Suprise";
@@ -139,7 +168,9 @@ function createAndBindSnowButton() {
   button.style.top = "400px";
   document.body.append(button);
 }
-
+/**
+ * creates a santa image at a random height and starts the left to right animation
+ */
 function createAndBindSanta() {
   var santa = document.createElement("img");
   santa.src = "Images/santa.webp";
@@ -152,7 +183,9 @@ function createAndBindSanta() {
 
   setInterval(() => iterateSanta(), 30);
 }
-
+/**
+ * creates a sun at a predifined position and binds it to the dom
+ */
 function createAndBindSun() {
   var sun = createCircle();
   sun.position = "fixed";
@@ -164,7 +197,9 @@ function createAndBindSun() {
   sun.style.backgroundColor = "yellow";
   sun.style.borderColor = "yellow";
 }
-
+/**
+ * creates a Welcome Message at a fixed height and starts the left and right animation
+ */
 function createAndBindWelcomeMessage() {
   var welcome = document.createElement("div");
   welcome.innerHTML = "Happy Holidays!";
@@ -179,7 +214,9 @@ function createAndBindWelcomeMessage() {
   document.body.append(welcome);
   setInterval(() => iterateWelcome(), 100);
 }
-
+/**
+ * Styles the document body
+ */
 function styleDocumentBody() {
   document.body.style.backgroundColor = "#87CEEB";
   document.body.style.height = "550px";
